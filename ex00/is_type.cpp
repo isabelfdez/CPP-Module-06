@@ -6,7 +6,7 @@
 /*   By: isfernan <isfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:29:06 by isfernan          #+#    #+#             */
-/*   Updated: 2021/09/15 17:10:17 by isfernan         ###   ########.fr       */
+/*   Updated: 2021/09/16 14:50:17 by isfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ bool	is_char(std::string arg)
 			return (0);
 		i++;
 	}
-	if (arg == "nan" || arg == "nanf")
-		return (0);
 	return (1);
 }
 
@@ -41,7 +39,7 @@ bool    is_int(std::string arg)
 		i++;
 	}
 	
-	long int	nb = std::stol(arg);
+	float	nb = atof(arg.c_str());
 	if (nb >  INT_MAX || nb < INT_MIN)
 		return (0);
 	return (1);
@@ -73,13 +71,21 @@ bool	is_float(std::string arg)
 bool	is_double(std::string arg)
 {
 	int		i = 0;
+	int		dot = 0;
 
 	if (arg[i] && (arg[i] == '-' || arg[i] == '+'))
 		i++;
 	while (arg[i])
 	{
 		if (!isdigit(arg[i]))
-			return (0);
+		{
+			if (arg[i] == '.')
+				dot++;
+			else
+				return (0);
+			if (dot > 1)
+				return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -87,7 +93,8 @@ bool	is_double(std::string arg)
 
 bool	is_specialcase(std::string arg)
 {
-	if (arg == "nan" || arg == "nanf" || arg == "inf" || arg == "inff")
+	if (arg == "nan" || arg == "nanf" || arg == "+inf" || arg == "+inff" || arg == "-inf" 
+		|| arg == "-inff" ||  arg == "inf" || arg == "inff")
 		return (1);
 	return (0);
 }

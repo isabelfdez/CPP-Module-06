@@ -6,7 +6,7 @@
 /*   By: isfernan <isfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:24:43 by isfernan          #+#    #+#             */
-/*   Updated: 2021/09/15 16:59:44 by isfernan         ###   ########.fr       */
+/*   Updated: 2021/09/16 14:25:28 by isfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void    from_float(float x);
 bool	is_double(std::string arg);
 void    from_double(float x);
 
-bool	is_specialcase(std::string arg)
+bool	is_specialcase(std::string arg);
+void	from_specialcase(std::string arg);
+
 
 
 
